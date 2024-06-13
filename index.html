@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lãi suất khoản vay</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Lãi suất khoản vay</h1>
+        </header>
+        <div class="form-section">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="gtKhoanVay">Giá trị khoản vay:</label>
+                        <input type="text" class="form-control" id="gtKhoanVay" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required max="1000000000">
+                    </div>
+                    <div class="slider-container">
+                        <!-- <input type="range" min="0" max="1000000000" class="slider" id="sliderGtKhoanVay"> -->
+                        <!-- <input type="range" min="0" max="1000000000" class="slider" id="sliderGtKhoanVay"> -->
+                        <input type="range"  name="slider" tabindex="-1"  min="0" max="1000000000" step="1" value="0" class="slider" id="sliderGtKhoanVay">
+
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="tgVay">Thời gian vay:</label>
+                        <input type="text" class="form-control" id="tgVay" required max="300" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    </div>
+                    <input type="range" tabindex="-1" min="0" max="300" class="slider" id="sliderTgVay" value="0">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="lsUuDai">Lãi suất ưu đãi:</label>
+                        <input type="text" class="form-control" id="lsUuDai" required max="20" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || event.key === '.')" oninput="checkTyping(this)">
+                    </div>
+                    <input type="range" tabindex="-1" value="0" min="0" max="20" step="0,01" class="slider" id="sliderLsUuDai">
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="tgUuDai">Thời gian:</label>
+                        <input type="text" class="form-control" id="tgUuDai" required max="300" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    </div>
+                    <input type="range" tabindex="-1" min="0" max="300" class="slider" id="sliderTgUuDai" value="0">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="lsCoDinh">Lãi suất cố định:</label>
+                        <input type="text" class="form-control" id="lsCoDinh" required max="20" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || event.key === '.')" oninput="checkTyping(this)">
+                    </div>
+                    <input type="range" tabindex="-1" value="0" min="0" max="20" step="0,01" class="slider" id="sliderLsCoDinh">
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="tgCoDinh">Thời gian:</label>
+                        <input type="text" class="form-control" id="tgCoDinh" required max="300" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    </div>
+                    <input type="range" tabindex="-1" value="0" min="0"  max="300" class="slider" id="sliderTgCoDinh">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-default btn-option" id="laiGiamDan" onclick="selectCalculationMethod(this,'lgd')">Gốc cố định, lãi giảm dần</button>
+                    <button class="btn btn-default btn-option" id="laiChiaDeu" onclick="selectCalculationMethod(this,'lcd')">Gốc, lãi chia đều hàng tháng</button>
+                    <button class="btn btn-default btn-export" id="export" onclick="exportTableToExcel('tableData','LaiVay')" disabled>Xuất file</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <input type="submit" value="Tạm tính" onclick="sumAction()">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="tongLai">Tổng lãi phải trả:</label>
+                        <input type="text" class="form-control" disabled id="tongLai" required>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="tongGoc">Tổng gốc lãi:</label>
+                        <input type="text" class="form-control" disabled id="tongGoc" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-container">
+            <table id="tableData" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center" data-label="Kỳ hạn">Kỳ hạn</th>
+                        <th class="text-center" data-label="Lãi phải trả">Lãi phải trả</th>
+                        <th class="text-center" data-label="Gốc phải trả">Gốc phải trả</th>
+                        <th class="text-center" data-label="Tổng tiền phải trả">Tổng tiền phải trả</th>
+                        <th class="text-center" data-label="Dư nợ">Dư nợ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+        <!-- Thêm jQuery từ CDN -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="scripts.js"></script>
+
+</body>
+
+</html>

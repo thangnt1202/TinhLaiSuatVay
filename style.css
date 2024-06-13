@@ -1,0 +1,328 @@
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .form-section {
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section input[type="text"],
+        .form-section input[type="email"],
+        .form-section input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-section input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-section input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ccc;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+
+        .form-group {
+            display: flex;
+            align-items: center;
+        }
+        .form-group label {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .form-section input[type="text"]:disabled{
+            border-bottom: 2px solid grey !important;
+            background: white;
+            opacity: 0.8;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"] {
+            flex: 2;
+            border: none !important;
+            border-bottom: 2px dashed #a5a1a1 !important;
+            box-shadow: none;
+            outline: none;
+            border-radius: 0 !important;
+        }
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus {
+            box-shadow: none;
+            border-bottom: 2px solid #65e96ac7 !important;
+        }
+        .slider {
+            width: 100%;
+        }
+
+/* Màu cho phần slider khi ở trạng thái bình thường */
+input[type="range"] {
+    -webkit-appearance: none; /* ẩn mặc định UI */
+    appearance: none;
+    background-color: #ccc; /* Đảm bảo không có màu nền */
+    width: 100%; /* Đảm bảo thanh slider mở rộng đến toàn bộ chiều rộng của phần tử cha */
+    height: 12px;
+    border-radius: 5px;
+    cursor: pointer; /* Con trỏ sẽ thay đổi khi trỏ vào */
+    margin: 0; /* Loại bỏ margin */
+}
+
+/* Thiết lập màu sắc cho phần thumb của slider */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%; /* Biến thumb thành hình tròn */
+    border: 5px solid #4CAF50; /* Viền đen */
+    background-color: white; /* Nền màu xanh */
+    cursor: pointer;
+    background-image: url('https://cdn.haitrieu.com/wp-content/uploads/2022/01/Icon-VPBank-1024x870.png');
+    cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb:active,input[type="range"]::-webkit-slider-thumb:hover {
+    border: 5px solid red; /* Viền đen */
+
+}
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #ccc;
+  border-radius: 5px;
+  outline: none;
+  margin: 10px 0;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background-color: #4CAF50;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.btn-option{
+    background: wheat !important;
+    margin: 10px 0 10px 0;
+    cursor: pointer;   
+}
+.btn-option:hover{
+    background: #4CAF50 !important;
+    cursor: pointer;   
+    color: white !important;
+}
+.btn-export{
+    background: wheat !important;
+    margin: 10px 0 10px 0;
+    cursor: pointer; 
+}
+.btn-export:hover{
+    background: #4CAF50 !important;
+    cursor: pointer;   
+    color: white !important;
+}
+.btn-export:disabled {
+    background: grey !important;
+    margin: 10px 0 10px 0;
+    cursor: pointer; 
+    border: 0;
+}
+.btn.selected {
+    background: #4CAF50 !important;
+    color: white !important;}
+
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .form-section {
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section input[type="text"],
+        .form-section input[type="email"],
+        .form-section input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-section input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-section input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ccc;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+/* CSS cho responsive table */
+@media screen and (max-width: 760px) {
+    /* Biến table thành dạng block */
+    .table-container table {
+        display: block;
+        width: 100%;
+        border-spacing: 0;
+    }
+
+    /* Đảm bảo các dòng (tr) hiển thị dưới dạng block */
+    .table-container tbody,
+    .table-container tr {
+        display: block;
+        width: 100%;
+        background-color: #65e96ac7; /* Màu nền trắng */
+        margin-bottom: 5px; /* Khoảng cách giữa các dòng */
+    }
+
+    /* Ẩn tiêu đề (th) khi hiển thị dưới dạng block */
+    .table-container th {
+        display: none;
+    }
+
+    /* Hiển thị nội dung (td) dưới dạng block */
+    .table-container td {
+        display: block;
+        text-align: right !important; /* Căn phải cho nội dung */
+        width: auto;
+        position: relative;
+        padding-left: 50%; /* Căn lề trái cho nội dung */
+        background-color: #ececec; /* Màu nền xám */
+        border-bottom-width: 0 !important ;
+    }
+
+    /* Định dạng lại tiêu đề và nội dung */
+    .table-container td:before {
+        position: absolute;
+        left: 6px; /* Lề trái cho tiền tố */
+        width: 45%; /* Phần trước nội dung */
+        padding-right: 10px; /* Lề phải */
+        white-space: nowrap; /* Đảm bảo văn bản không bị ngắt dòng */
+        font-weight: bold; /* Đậm văn bản */
+        text-align: left !important;
+    }
+
+    /* Điều chỉnh lại độ rộng cho từng tiêu đề */
+    .table-container td:nth-of-type(1):before { content: "Kỳ hạn"; }
+    .table-container td:nth-of-type(2):before { content: "Lãi phải trả"; }
+    .table-container td:nth-of-type(3):before { content: "Gốc phải trả"; }
+    .table-container td:nth-of-type(4):before { content: "Tổng tiền phải trả"; }
+    .table-container td:nth-of-type(5):before { content: "Dư nợ"; }
+    input[type="range"] {
+        display: none;
+    }
+}
